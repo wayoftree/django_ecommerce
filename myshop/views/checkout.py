@@ -14,18 +14,16 @@ class CheckOut(View):
         cart = request.session.get('cart')
         products = Product.get_products_by_id(list(cart.keys()))
         print(address,phone,customer,cart,products)
-        #add if check
-        if customer:
-            for product in products:
-                order = Order(customer = Customer(id=customer),
-                            product = product,
-                            price = product.price,
-                            address = address,
-                            phone = phone,
-                            quantity = cart.get(str(product.id)))
-                order.save()
-                request.session['cart'] = {}
-        else:
-            return redirect('customer_login')
+
+        for product in products:
+            print(cart.get(str(product.id)))
+            order = Order(customer=Customer(id=customer),
+                          product=product,
+                          price=product.price,
+                          address=address,
+                          phone=phone,
+                          quantity=cart.get(str(product.id)))
+            order.save()
+        request.session['cart'] = {}
 
         return redirect('index')

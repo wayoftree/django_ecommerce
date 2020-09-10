@@ -25,3 +25,7 @@ class Customer(models.Model):
             return Customer.objects.get(email = email)
         except:
             return False
+
+
+    def __str__(self):
+        return self.first_name+' '+self.last_name
