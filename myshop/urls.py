@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import home, customer_login, customer_signup, cart, checkout, orders
+from myshop.middlewares.auth import simple_middleware
 
 
 urlpatterns = [
@@ -9,6 +10,6 @@ urlpatterns = [
 	path('logout/', customer_login.logout, name="logout"),
 	path('cart/', cart.Cart.as_view(), name="cart"),
 	path('checkout/', checkout.CheckOut.as_view(), name="checkout"),
-	path('orders/', orders.OrderView.as_view(), name="orders"),
+	path('orders/', simple_middleware(orders.OrderView.as_view()), name="orders"),
 
 ]

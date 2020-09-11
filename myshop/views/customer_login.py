@@ -1,13 +1,19 @@
 from django.contrib.auth.hashers import check_password
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views import View
 from myshop.models.customer import Customer
 
 
 class CustomerLogin(View):
 
+    next = None
+
     def get(self, request):
-        return render(request, 'customer_login.html')
+        CustomerLogin.next = request.GET.get('next')
+        if request.session.get('customer'):
+            return redirect('index')
+        else:
+            return render(request, 'customer_login.html')
 
     def post(self, request):
         email = request.POST.get('email')
@@ -17,10 +23,12 @@ class CustomerLogin(View):
         if customer:
             flag = check_password(password, customer.password)
             if flag:
-                # request.session['customer_id'] = customer.id
-                # request.session['email'] = customer.email
                 request.session['customer'] = customer.id
-                return redirect('index')
+                if CustomerLogin.next:
+                    return HttpResponseRedirect(CustomerLogin.next)
+                else:
+                    CustomerLogin.next = None
+                    redirect('index')
             else:
                 error_message = 'Email or Password Invalid !!'
         else:
