@@ -13,19 +13,17 @@ class Customer(models.Model):
         self.save()
 
     def isExists(self):
-        if Customer.objects.filter(email = self.email):
+        if Customer.objects.filter(email=self.email):
             return True
-
 
         return False
 
     @staticmethod
     def get_customer_by_email(email):
         try:
-            return Customer.objects.get(email = email)
+            return Customer.objects.get(email=email)
         except:
             return False
 
-
     def __str__(self):
-        return self.first_name+' '+self.last_name
+        return self.first_name + ' ' + self.last_name

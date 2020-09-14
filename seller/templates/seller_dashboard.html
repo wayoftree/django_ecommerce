@@ -1,0 +1,42 @@
+{% extends 'seller_base.html' %}
+
+{% block content %}
+
+{% load custom_filter %}
+
+<!-- body -->
+<div class="container-fluid mt-3">
+	<div class="row">
+
+
+		<!-- filter -->
+
+		<div class="col-lg-3 mx-auto">
+			<div class="list-group text-center">
+				<a href="/seller/dashboard" class="list-group-item list-group-item-action">Uploaded Products</a>
+				<a href="/seller/add_product" class="list-group-item list-group-item-action">Add New Products</a>
+			</div>
+		</div>
+
+		<!-- all products -->
+		<div id='products' class="col-lg-9 mx-auto">
+			<div class="row mx-auto">
+				{% for product in products %}
+				<div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
+					<img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
+					<div class="card-body">
+						<p class="card-title">{{product.name}}</p>
+						<p class="card-text"><b>{{product.price|currency}}</b></p>
+						<p class="card-text">{{product.description}}</p>
+						<a href="/seller/edit_product/{{product.id}}" class="btn btn-info">Edit</a>
+						<a href="/seller/delete_product/{{product.id}}" class="btn btn-danger float-right">Delete</a>
+					</div>
+				</div>
+				{% endfor %} 
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

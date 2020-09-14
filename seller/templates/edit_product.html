@@ -1,0 +1,90 @@
+{% extends 'seller_base.html' %}
+
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="p-4 m-4">
+
+
+        <div class="col-lg-5 rounded mx-auto border pt-4">
+            <div class="text-center col">
+
+            <div class="display-8">Edit Product Here</div>
+            <hr>
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+               {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
+                {% for p in products %}
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="">Product Name</label>
+                    <input type="text" name="name"
+                     id="" value="{{p.name}}" class="form-control form-control-sm"
+                     placeholder="">
+                </div>
+
+                <!-- Price -->
+                <div class="form-group">
+                    <label for="">Product Price</label>
+                    <input type="text" name="price"
+                    id="" value="{{p.price}}" class="form-control form-control-sm"
+                    >
+                </div>
+
+
+                <!-- Category -->
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Category</label>
+                    <select class="form-control" name="category_id" value="" id="exampleFormControlSelect1">
+                        {% comment %} <option>--Select--</option> {% endcomment %}
+                        {% for c in category %}
+                        <option value="{{c.id}}" {% if p.category_id == c.id %}selected{% endif %}>{{c.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- Seller ID -->
+                <div class="form-group">
+                    <input type="hidden" name="seller_id"
+                    id="" class="form-control form-control-sm"
+                    value="{{request.session.seller}}"
+                    >
+                </div>
+
+                <!-- Description  -->
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3">{{p.description}}</textarea>
+                </div>
+
+                <!-- Image -->
+
+                <div class="form-group">
+                    <label for="">Image (optional)</label>
+                    <input type="file" name="image"
+                    id="" class="form-control form-control-sm"
+                    >
+                </div>
+                {% endfor %}
+                <hr>
+                <div class="form-group">
+                    <input class="btn btn-sm btn-info" type="submit" value="Update Product Details ">
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

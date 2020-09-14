@@ -31,13 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'myshop.apps.MyshopConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #Our Apps
+    'myshop.apps.MyshopConfig',
+    'seller.apps.SellerConfig',
 ]
 
 MIDDLEWARE = [

@@ -19,7 +19,7 @@
 
 				{% for category in categories %}
 				<a href="/?category={{category.id}}"
-					class="list-group-item list-group-item-action">{{category.name}}</a>
+					 class="list-group-item list-group-item-action">{{category.name}}</a>
 				{% endfor %}
 			</div>
 		</div>
@@ -33,6 +33,7 @@
 					<div class="card-body">
 						<p class="card-title">{{product.name}}</p>
 						<p class="card-text"><b>{{product.price|currency}}</b></p>
+						<p class="card-text"><b>{{product.description}}</b></p>
 						<!-- {{product | is_in_cart:request.session.cart }} -->
 					</div>
 

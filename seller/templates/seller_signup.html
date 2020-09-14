@@ -1,0 +1,137 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container mt-4">
+    
+    <div class="p-4 m-4">
+
+        
+        <div class="col-lg-5 rounded mx-auto border pt-4">
+            <div class="text-center col">
+            
+                <!--<img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Shopping_cart_with_food_clip_art_2.svg/307px-Shopping_cart_with_food_clip_art_2.svg.png" alt=""
+                class="" style="height: 150px;">-->
+            <!-- <hr> -->
+            <div class="display-8">Create An Seller Account</div>
+            <hr>
+            </div>
+            <h3 hidden class="alert alert-light border rounded">Create An Seller Account</h3>
+            <form action="seller_signup" method="POST">
+
+                {% csrf_token %}
+
+               {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
+                <!-- firstname -->
+                <div class="form-group">
+                    <label for="">First Name</label>
+                    <input type="text" name="firstname"
+                     id="" value="{{values.first_name}}" class="form-control form-control-sm"
+                     placeholder="">
+                </div>
+
+                <!-- last name -->
+                <div class="form-group">
+                    <label for="">Last Name</label>
+                    <input type="text" name="lastname"
+                    id="" value="{{values.last_name}}" class="form-control form-control-sm"
+                    >
+                </div>
+
+                <!-- phone -->
+                <div class="form-group">
+                    <label for="">Phone</label>
+                    <input type="text" name="phone"
+                    id="" class="form-control form-control-sm"
+                    value="{{values.phone}}"
+                    placeholder="565698959"
+                    >
+                </div>
+                <!-- email -->
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input required type="email" name="email" id=""
+                    value="{{values.email}}"
+                    class=" form-control-sm form-control" placeholder="example@gmail.com">
+                </div>
+
+
+                <!-- password -->
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" 
+                    name="password" 
+                    id=""
+                     class="form-control form-control-sm" placeholder="********">
+                </div>
+
+                <!-- Business Information -->
+
+                <hr>
+
+                <p class="font-weight-bold text-center">Business Information</p>
+
+                <!-- Company Name -->
+                <div class="form-group">
+                    <label for="">Company Name or Firm Name</label>
+                    <input type="text" name="firm_name"
+                     id="" value="{{values.firm_name}}" class="form-control form-control-sm"
+                     placeholder="">
+                </div>
+
+                <!-- Business Registration Number -->
+
+                <div class="form-group">
+                    <label for="">Business Registration Number</label>
+                    <input type="text" name="business_no"
+                     id="" value="{{values.business_no}}" class="form-control form-control-sm"
+                     placeholder="">
+                </div>
+
+                <!-- Address -->
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Office Address</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="office_address" rows="3">{{values.office_address}}</textarea>
+                </div>
+
+                <!-- State -->
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">State</label>
+                    <select class="form-control" name="state" value="{{values.state}} id="exampleFormControlSelect1">
+                        <option>--Select--</option>
+                        <option>Gujarat</option>
+                    </select>
+                </div>
+
+                <!-- City -->
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">City</label>
+                    <select class="form-control" name="city"  value="{{values.city}} id="exampleFormControlSelect1">
+                        <option>--Select--</option>
+                        <option>Ahmedabad</option>
+                    </select>
+                </div>
+
+                <hr>
+                <div class="form-group">
+                    <input class="btn btn-sm btn-info" type="submit" value="Create An Seller Account ">
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -41,4 +41,4 @@ class CustomerLogin(View):
 
 def logout(request):
     request.session.clear()
-    return redirect('customer_login')
+    return redirect('index')
